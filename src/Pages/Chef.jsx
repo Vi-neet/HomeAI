@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import IngredientsList from "./IngredientsList";
-import RecipeSection from "./RecipeSection";
+import IngredientsList from "../components/IngredientsList";
+import RecipeSection from "../components/RecipeSection";
 import { getRecipeFromMistral } from "../ai";
 
-const Form = () => {
-  const [ingredients, setIngredients] = useState([]);
+const Chef = () => {
+  const [ingredients, setIngredients] = useState(['Pizza','Cheese','Tomato','Basic Ingredients']);
   const [recipe, setRecipe] = useState("");
 
   const viewRecipeSection = useRef(null);
@@ -49,4 +49,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Chef;
