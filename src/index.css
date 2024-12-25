@@ -103,14 +103,14 @@ ul.items-list > li {
   font-size: 0.875rem;
   cursor: pointer;
 }
-.suggested-recipe-container {
+.suggested-solution-container {
   color: #475467;
   line-height: 28px;
   font-size: 1.125rem;
   font-weight: 400;
 }
 
-.suggested-recipe-container ul li,
-.suggested-recipe-container ol li {
+.suggested-solution-container ul li,
+.suggested-solution-container ol li {
   margin-bottom: 8px;
 }

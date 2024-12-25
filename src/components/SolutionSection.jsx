@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
-import Markdown from 'react-markdown'
+// import Markdown from "react-markdown";
+import { marked } from "marked";
 
-const SolutionSection = (props) => {
-  const markdown= props.item
+const SolutionSection = ({item, solutionTitle}) => {
+  const renderedMarkdown = marked(item);
   return (
-    <section className='suggested-recipe-container' aria-live="polite">
-    <h2>{props.solutionTitle}</h2>
-    <Markdown>{markdown}</Markdown>
+    <section className="suggested-solution-container" aria-live="polite">
+      <h2>{solutionTitle}</h2>
+      <div dangerouslySetInnerHTML={{ __html: renderedMarkdown }} />
     </section>
-  )
-}
+  );
+};
 
-export default SolutionSection
+export default SolutionSection;
