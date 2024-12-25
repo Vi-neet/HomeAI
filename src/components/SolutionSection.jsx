@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Markdown from 'react-markdown'
 
-const RecipeSection = (props) => {
+const SolutionSection = (props) => {
   const markdown= props.recipe
   return (
     <section className='suggested-recipe-container' aria-live="polite">
@@ -11,4 +11,4 @@ const RecipeSection = (props) => {
   )
 }
 
-export default RecipeSection
+export default SolutionSection

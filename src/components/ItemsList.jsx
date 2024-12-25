@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const IngredientsList = (props) => {
+const ItemsList = (props) => {
 
   const ingredientsListItems = props.ingredients.map((ingredient) => (
     <li key={ingredient}>{ingredient}</li>
@@ -26,5 +26,5 @@ const IngredientsList = (props) => {
   );
 };
 
-export default IngredientsList;
+export default ItemsList;
 

@@ -1,19 +1,24 @@
 import { useState, useRef, useEffect } from "react";
-import IngredientsList from "../components/IngredientsList";
-import RecipeSection from "../components/RecipeSection";
-import { getRecipeFromMistral } from "../ai";
+import ItemsList from "../components/ItemsList";
+import SolutionSection from "../components/SolutionSection";
+import { getRecipeFromMistral } from "../Ais/ai";
 
 const Chef = () => {
-  const [ingredients, setIngredients] = useState(['Pizza','Cheese','Tomato','Basic Ingredients']);
+  const [ingredients, setIngredients] = useState([
+    "Pizza",
+    "Cheese",
+    "Tomato",
+    "Basic Ingredients",
+  ]);
   const [recipe, setRecipe] = useState("");
 
   const viewRecipeSection = useRef(null);
 
-  useEffect(()=>{
-    if (recipe !== "" && viewRecipeSection.current !== null){
-      viewRecipeSection.current.scrollIntoView({behavior:"smooth"})
+  useEffect(() => {
+    if (recipe !== "" && viewRecipeSection.current !== null) {
+      viewRecipeSection.current.scrollIntoView({ behavior: "smooth" });
     }
-  },[recipe])
+  }, [recipe]);
 
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
@@ -38,13 +43,13 @@ const Chef = () => {
         <button className="input-btn">Add Ingredient</button>
       </form>
       {ingredients.length > 0 && (
-        <IngredientsList
+        <ItemsList
           ingredients={ingredients}
           toggle={getRecipe}
           ref={viewRecipeSection}
         />
       )}
-      {recipe && <RecipeSection recipe={recipe} />}
+      {recipe && <SolutionSection recipe={recipe} />}
     </main>
   );
 };
