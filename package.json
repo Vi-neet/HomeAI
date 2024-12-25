@@ -12,6 +12,7 @@
   "dependencies": {
     "@huggingface/inference": "^2.8.1",
     "dotenv": "^16.4.5",
+    "marked": "^15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^8.0.6",
