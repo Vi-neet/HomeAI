@@ -1,55 +1,60 @@
 import { useState, useRef, useEffect } from "react";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
-import { getRecipeFromMistral } from "../Ais/ai";
+import { getBudgetFromMistral } from "../Ais/EconomistAI";
 
 const Economist = () => {
-  const [ingredients, setIngredients] = useState([
-    "Pizza",
-    "Cheese",
-    "Tomato",
-    "Basic Ingredients",
+  const [prices, setPrices] = useState([
+    "Rent is 1000",
+    "Savings are 2000",
+    "Expense is 5000",
+    "Income is 14000",
   ]);
-  const [recipe, setRecipe] = useState("");
+  const [budget, setBudget] = useState("");
 
-  const viewRecipeSection = useRef(null);
+  const viewBudgetSection = useRef(null);
 
   useEffect(() => {
-    if (recipe !== "" && viewRecipeSection.current !== null) {
-      viewRecipeSection.current.scrollIntoView({ behavior: "smooth" });
+    if (budget !== "" && viewBudgetSection.current !== null) {
+      viewBudgetSection.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [recipe]);
+  }, [budget]);
 
-  function addIngredient(formData) {
-    const newIngredient = formData.get("ingredient");
+  function addPrice(formData) {
+    const newPrice = formData.get("ingredient");
 
-    setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
+    setPrices((prevPrices) => [...prevPrices, newPrice]);
   }
 
-  async function getRecipe() {
-    const recipeMarkdown = await getRecipeFromMistral(ingredients);
-    setRecipe(recipeMarkdown);
+  async function getBudget() {
+    const budgetMarkdown = await getBudgetFromMistral(prices);
+    setBudget(budgetMarkdown);
   }
+
   return (
     <main>
-      <form action={addIngredient} className="form">
+      <form action={addPrice} className="form">
         <input
           type="text"
-          aria-label="Add Ingredient"
-          placeholder="e.g. rent is X"
+          aria-label="Add Price"
+          placeholder="e.g. rent is 1000"
           className="input-field"
           name="ingredient"
         />
-        <button className="input-btn">Add Prices</button>
+        <button className="input-btn">Add Price</button>
       </form>
-      {ingredients.length > 0 && (
+      {prices.length > 0 && (
         <ItemsList
-          ingredients={ingredients}
-          toggle={getRecipe}
-          ref={viewRecipeSection}
+          items={prices}
+          toggle={getBudget}
+          ref={viewBudgetSection}
+          title="Prices on Hand:"
+          readyTitle="Ready for a Budget?"
+          readyDescription="Generate a recipe for your list of prices."
+          buttonText="Get a Budget"
         />
       )}
-      {recipe && <SolutionSection recipe={recipe} />}
+      {budget && <SolutionSection item={budget} />}
     </main>
   );
 };

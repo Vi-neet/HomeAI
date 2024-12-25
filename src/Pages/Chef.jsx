@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
-import { getRecipeFromMistral } from "../Ais/ai";
+import { getRecipeFromMistral } from "../Ais/ChefAi";
 
 const Chef = () => {
   const [ingredients, setIngredients] = useState([

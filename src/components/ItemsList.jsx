@@ -1,30 +1,26 @@
 /* eslint-disable react/prop-types */
 const ItemsList = (props) => {
-
-  const ingredientsListItems = props.ingredients.map((ingredient) => (
-    <li key={ingredient}>{ingredient}</li>
+  const listItems = props.items.map((item) => (
+    <li key={item}>{item}</li>
   ));
+
   return (
-       
-        <section>
-          <h2>Ingredients on hand:</h2>
-          <ul className="ingredients-list" aria-live="polite">
-            {ingredientsListItems}
-          </ul>
-          {props.ingredients.length > 3 && (
-            <div className="get-recipe-container">
-              <div ref={props.ref}>
-                <h3>Ready for a recipe?</h3>
-                <p>Generate a recipe from your list of ingredients.</p>
-              </div>
-              <button onClick={props.toggle}>Get a recipe</button>
-            </div>
-          )}
-        </section>
-  
-    
+    <section>
+      <h2>{props.title}</h2>
+      <ul className="items-list" aria-live="polite">
+        {listItems}
+      </ul>
+      {props.items.length > 3 && (
+        <div className="get-solution-container">
+          <div ref={props.ref}>
+            <h3>{props.readyTitle}</h3>
+            <p>{props.readyDescription}</p>
+          </div>
+          <button onClick={props.toggle}>{props.buttonText}</button>
+        </div>
+      )}
+    </section>
   );
 };
 
 export default ItemsList;
-
