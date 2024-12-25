@@ -11,7 +11,7 @@ const Economist = () => {
     "Income is 14000",
   ]);
   const [budget, setBudget] = useState("");
-
+  const [loading, setLoading] = useState(false); // Add loading state
   const viewBudgetSection = useRef(null);
 
   useEffect(() => {
@@ -27,8 +27,11 @@ const Economist = () => {
   }
 
   async function getBudget() {
+    setLoading(true); // Set loading to true when fetching starts
+
     const budgetMarkdown = await getBudgetFromMistral(prices);
     setBudget(budgetMarkdown);
+    setLoading(false); // Set loading to false when fetching is complete
   }
 
   return (
@@ -54,7 +57,10 @@ const Economist = () => {
           buttonText="Get a Budget"
         />
       )}
-      {budget && <SolutionSection item={budget} />}
+      {loading && <p>Loading...</p>} 
+      {budget && (
+        <SolutionSection item={budget} solutionTitle="Economist Recommends:" />
+      )}
     </main>
   );
 };

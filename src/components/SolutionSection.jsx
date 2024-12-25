@@ -5,7 +5,7 @@ const SolutionSection = (props) => {
   const markdown= props.item
   return (
     <section className='suggested-recipe-container' aria-live="polite">
-    <h2>Chef Claude Reccomends:</h2>
+    <h2>{props.solutionTitle}</h2>
     <Markdown>{markdown}</Markdown>
     </section>
   )

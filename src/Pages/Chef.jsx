@@ -11,6 +11,7 @@ const Chef = () => {
     "Basic Ingredients",
   ]);
   const [recipe, setRecipe] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const viewRecipeSection = useRef(null);
 
@@ -27,8 +28,10 @@ const Chef = () => {
   }
 
   async function getRecipe() {
+    setLoading(true); // Set loading to true when fetching starts
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
     setRecipe(recipeMarkdown);
+    setLoading(false); // Set loading to false when fetching is complete
   }
   return (
     <main>
@@ -44,12 +47,19 @@ const Chef = () => {
       </form>
       {ingredients.length > 0 && (
         <ItemsList
-          ingredients={ingredients}
+          items={ingredients}
           toggle={getRecipe}
           ref={viewRecipeSection}
+          title="Ingredients on Hand:"
+          readyTitle="Ready for a Recipe?"
+          readyDescription="Generate a recipe for your list of ingredients."
+          buttonText="Get a Recipe"
         />
       )}
-      {recipe && <SolutionSection recipe={recipe} />}
+      {loading && <p>Loading...</p>}
+      {recipe && (
+        <SolutionSection item={recipe} solutionTitle="Chef Recommends:" />
+      )}
     </main>
   );
 };
