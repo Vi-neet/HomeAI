@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background-color: #fafaf8;
+}
+.logo {
+  height: 55px;
+  width: 45px;
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+.title,
+.logo {
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100px;
+  background-color: white;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+main {
+  padding: 40px 30px 10px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  height: 40px;
+}
+.input-field {
+  flex-grow: 1;
+  border-radius: 6px;
+  border: 1px solid #d1d5d8;
+  padding: 9px 13px;
+  min-width: 150px;
+  max-width: 400px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+.input-btn {
+  font-family: Inter, sans-serif;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  background-color: #141413;
+  cursor: pointer;
+  width: 150px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.input-btn::before {
+  content: "+";
+  margin-right: 5px;
+}
+ul.items-list {
+  margin-bottom: 48px;
+}
+
+ul.items-list > li {
+  color: #475467;
+  line-height: 28px;
+}
+
+.get-solution-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  background: #f0efeb;
+  padding: 10px 28px;
+}
+
+.get-solution-container h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.get-solution-container p {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 20px;
+}
+
+.get-solution-container button {
+  border: none;
+  border-radius: 6px;
+  background: #d17557;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  color: #fafaf8;
+  padding: 9px 17px;
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.suggested-solution-container {
+  color: #475467;
+  line-height: 28px;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.suggested-solution-container ul li,
+.suggested-solution-container ol li {
+  margin-bottom: 8px;
+}
