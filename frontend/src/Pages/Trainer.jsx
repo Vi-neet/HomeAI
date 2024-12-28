@@ -2,13 +2,29 @@ import { useState, useRef, useEffect } from "react";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getWorkoutRoutineFromMistral } from "../Ais/TrainerAi";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const Trainer = () => {
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState([
+    "bench",
+    "barbell",
+    "squat rack",
+    "plates upto 200kg",
+    "4 day routine",
+  ]);
   const [workoutPlan, setWorkoutPlan] = useState("");
-  const [loading, setLoading] = useState(false); // Add loading state
-
+  const [loading, setLoading] = useState(false);
   const viewWorkoutSection = useRef(null);
+  const override = {
+    display: "block",
+    margin: "2rem auto",
+    textAlign: "center",
+    position: "absolute",
+    top: "80%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 10,
+  };
 
   useEffect(() => {
     if (workoutPlan !== "" && viewWorkoutSection.current !== null) {
@@ -23,10 +39,10 @@ const Trainer = () => {
   }
 
   async function getWorkoutPlan() {
-    setLoading(true); // Set loading to true when fetching starts
+    setLoading(true);
     const workoutMarkdown = await getWorkoutRoutineFromMistral(exercises);
     setWorkoutPlan(workoutMarkdown);
-    setLoading(false); // Set loading to false when fetching is complete
+    setLoading(false);
   }
 
   return (
@@ -52,13 +68,23 @@ const Trainer = () => {
           ref={viewWorkoutSection}
         />
       )}
-      {loading && <p>Loading...</p>}
-      {workoutPlan && (
-        <SolutionSection
-          item={workoutPlan}
-          solutionTitle="Trainer Recommends:"
+      {loading && (
+        <SyncLoader
+          color="#495057"
+          speedMultiplier={0.8}
+          size={20}
+          loading={loading}
+          cssOverride={override}
         />
       )}
+      <div className={loading ? "blurred" : ""}>
+        {workoutPlan && (
+          <SolutionSection
+            item={workoutPlan}
+            solutionTitle="Trainer Recommends:"
+          />
+        )}
+      </div>
     </main>
   );
 };

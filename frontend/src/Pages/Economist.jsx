@@ -2,12 +2,29 @@ import { useState, useRef, useEffect } from "react";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getBudgetFromMistral } from "../Ais/EconomistAI";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const Economist = () => {
-  const [prices, setPrices] = useState([]);
+  const [prices, setPrices] = useState([
+    "Rent: 1000",
+    "Groceries: 200",
+    "Utilities: 100",
+    "Income:20000"
+  ]);
   const [budget, setBudget] = useState("");
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const viewBudgetSection = useRef(null);
+
+  const override = {
+    display: "block",
+    margin: "2rem auto",
+    textAlign: "center",
+    position: "absolute",
+    top: "80%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 10,
+  };
 
   useEffect(() => {
     if (budget !== "" && viewBudgetSection.current !== null) {
@@ -22,12 +39,10 @@ const Economist = () => {
   }
 
   async function getBudget() {
-    setLoading(true); // Set loading to true when fetching starts
-
+    setLoading(true);
     const budgetMarkdown = await getBudgetFromMistral(prices);
     setBudget(budgetMarkdown);
-    console.log(budgetMarkdown);
-    setLoading(false); // Set loading to false when fetching is complete
+    setLoading(false);
   }
 
   return (
@@ -53,10 +68,23 @@ const Economist = () => {
           buttonText="Get a Budget"
         />
       )}
-      {loading && <p>Loading...</p>}
-      {budget && (
-        <SolutionSection item={budget} solutionTitle="Economist Recommends:" />
+      {loading && (
+        <SyncLoader
+          color="#495057"
+          speedMultiplier={0.8}
+          size={20}
+          loading={loading}
+          cssOverride={override}
+        />
       )}
+      <div className={loading ? "blurred" : ""}>
+        {budget && (
+          <SolutionSection
+            item={budget}
+            solutionTitle="Economist Recommends:"
+          />
+        )}
+      </div>
     </main>
   );
 };

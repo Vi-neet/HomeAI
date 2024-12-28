@@ -114,3 +114,9 @@ ul.items-list > li {
 .suggested-solution-container ol li {
   margin-bottom: 8px;
 }
+
+.blurred {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
+}
