@@ -120,3 +120,17 @@ ul.items-list > li {
   pointer-events: none;
   user-select: none;
 }
+
+.solution-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heart-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
