@@ -4,12 +4,7 @@ import SolutionSection from "../components/SolutionSection";
 import { getBudgetFromMistral } from "../Ais/EconomistAI";
 
 const Economist = () => {
-  const [prices, setPrices] = useState([
-    "Rent is 1000",
-    "Savings are 2000",
-    "Expense is 5000",
-    "Income is 14000",
-  ]);
+  const [prices, setPrices] = useState([]);
   const [budget, setBudget] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
   const viewBudgetSection = useRef(null);
@@ -31,6 +26,7 @@ const Economist = () => {
 
     const budgetMarkdown = await getBudgetFromMistral(prices);
     setBudget(budgetMarkdown);
+    console.log(budgetMarkdown);
     setLoading(false); // Set loading to false when fetching is complete
   }
 
@@ -57,7 +53,7 @@ const Economist = () => {
           buttonText="Get a Budget"
         />
       )}
-      {loading && <p>Loading...</p>} 
+      {loading && <p>Loading...</p>}
       {budget && (
         <SolutionSection item={budget} solutionTitle="Economist Recommends:" />
       )}

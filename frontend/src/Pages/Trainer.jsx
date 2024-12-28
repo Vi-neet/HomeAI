@@ -4,12 +4,7 @@ import SolutionSection from "../components/SolutionSection";
 import { getWorkoutRoutineFromMistral } from "../Ais/TrainerAi";
 
 const Trainer = () => {
-  const [exercises, setExercises] = useState([
-    "Push-ups",
-    "Squats",
-    "Lunges",
-    "Basic Exercises",
-  ]);
+  const [exercises, setExercises] = useState([]);
   const [workoutPlan, setWorkoutPlan] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
 

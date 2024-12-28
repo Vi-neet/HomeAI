@@ -4,14 +4,9 @@ import SolutionSection from "../components/SolutionSection";
 import { getRecipeFromMistral } from "../Ais/ChefAi";
 
 const Chef = () => {
-  const [ingredients, setIngredients] = useState([
-    "Pizza",
-    "Cheese",
-    "Tomato",
-    "Basic Ingredients",
-  ]);
+  const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
 
   const viewRecipeSection = useRef(null);
 
@@ -28,11 +23,12 @@ const Chef = () => {
   }
 
   async function getRecipe() {
-    setLoading(true); // Set loading to true when fetching starts
+    setLoading(true);
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
     setRecipe(recipeMarkdown);
-    setLoading(false); // Set loading to false when fetching is complete
+    setLoading(false);
   }
+
   return (
     <main>
       <form action={addIngredient} className="form">
