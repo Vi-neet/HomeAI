@@ -18,5 +18,5 @@ router.post("/", createItem); // Correct the usage
 
 // DELETE single item
 router.delete("/:id", deleteItem);
-router.patch("/:id",updateItem);
+router.patch("/:id", updateItem);
 module.exports = router;

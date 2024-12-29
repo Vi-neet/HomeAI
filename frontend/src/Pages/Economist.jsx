@@ -9,7 +9,7 @@ const Economist = () => {
     "Rent: 1000",
     "Groceries: 200",
     "Utilities: 100",
-    "Income:20000"
+    "Income:20000",
   ]);
   const [budget, setBudget] = useState("");
   const [loading, setLoading] = useState(false);
