@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { marked } from "marked";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,16 @@ import Modal from "./Modal";
 const SolutionSection = ({ item, solutionTitle }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const renderedMarkdown = marked(item);
+  const [defaultTitle, setDefaultTitle] = useState("");
+
+  useEffect(() => {
+    const renderedMarkdown = marked(item);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(renderedMarkdown, 'text/html');
+    const h1Element = doc.querySelector('h1');
+    const title = h1Element ? h1Element.textContent : '';
+    setDefaultTitle(title);
+  }, [item]);
 
   const toggleSelection = () => {
     setIsSelected(!isSelected);
@@ -29,6 +38,11 @@ const SolutionSection = ({ item, solutionTitle }) => {
     }
   };
 
+  const handleClose = () => {
+    setIsSelected(false);
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="suggested-solution-container" aria-live="polite">
       <div className="solution-header">
@@ -42,11 +56,12 @@ const SolutionSection = ({ item, solutionTitle }) => {
           <FontAwesomeIcon icon={isSelected ? faHeartSolid : faHeartRegular} />
         </button>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: renderedMarkdown }} />
+      <div dangerouslySetInnerHTML={{ __html: marked(item) }} />
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleClose}
         onSave={handleSave}
+        defaultTitle={defaultTitle}
         defaultContent={item}
       />
     </section>

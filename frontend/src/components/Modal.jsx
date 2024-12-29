@@ -1,22 +1,26 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-
-const Modal = ({ isOpen, onClose, onSave,defaultContent }) => {
-  const [title, setTitle] = useState("");
+const Modal = ({ isOpen, onClose, onSave, defaultTitle, defaultContent }) => {
+  const [title, setTitle] = useState(defaultTitle);
   const [content, setContent] = useState(defaultContent);
-  useEffect(()=>{
+
+  useEffect(() => {
+    setTitle(defaultTitle);
     setContent(defaultContent);
-  },[defaultContent])
+  }, [defaultTitle, defaultContent]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave({ title, content });
     onClose();
   };
+
   if (!isOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <>
+      <div className="modal-overlay" onClick={onClose}></div>
+      <div className="modal">
         <h2>Add Item</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -31,11 +35,10 @@ const Modal = ({ isOpen, onClose, onSave,defaultContent }) => {
             onChange={(e) => setContent(e.target.value)}
           />
           <button type="submit">Save</button>
-          <button onClick={onClose}>Close</button>
+          <button type="button" onClick={onClose}>Close</button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
-
 export default Modal;

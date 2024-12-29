@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { marked } from "marked";
 
+import ItemCard from "../components/ItemCard";
 const Home = () => {
   const [items, setItems] = useState(null);
 
@@ -18,9 +18,10 @@ const Home = () => {
   return (
     <div className="home">
       <div className="items">
-        {items && items.map((item) => <p key={item._id}>{item.title}
-        <div dangerouslySetInnerHTML={{ __html: marked(item.content) }} />
-          </p>)}
+        {items &&
+          items.map((item) => (
+            <ItemCard key={item._id} item={item} />
+          ))}
       </div>
     </div>
   );

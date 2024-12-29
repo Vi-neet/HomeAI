@@ -7,6 +7,7 @@ You are an assistant that receives a list of equipment, workout preferences,
   The routine can include additional exercises or equipment they didn't mention, 
   but try not to include too many extra items. 
   Format your response in markdown to make it easier to render to a web page.
+  Make sure to generate the title (i.e the very first element)in a h1 tag 
   `;
 
 const hf = new HfInference(import.meta.env.VITE_HF_ACCESS_TOKEN);
