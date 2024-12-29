@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Modal = ({ isOpen, onClose, onSave }) => {
+const Modal = ({ isOpen, onClose, onSave,defaultContent }) => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [content, setContent] = useState(defaultContent);
+  useEffect(()=>{
+    setContent(defaultContent);
+  },[defaultContent])
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave({ title, description });
+    onSave({ title, content });
     onClose();
   };
   if (!isOpen) return null;
@@ -23,9 +26,9 @@ const Modal = ({ isOpen, onClose, onSave }) => {
             onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
           <button type="submit">Save</button>
           <button onClick={onClose}>Close</button>

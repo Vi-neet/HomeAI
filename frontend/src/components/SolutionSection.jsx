@@ -47,6 +47,7 @@ const SolutionSection = ({ item, solutionTitle }) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSave}
+        defaultContent={item}
       />
     </section>
   );

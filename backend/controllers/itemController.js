@@ -22,10 +22,10 @@ const getSingleItem = async (req, res) => {
 };
 // Create new Item
 const createItem = async (req, res) => {
-  const { title, description } = req.body;
-  // Adding title and description
+  const { title, content } = req.body;
+  // Adding title and content
   try {
-    const item = await Item.create({ title, description });
+    const item = await Item.create({ title, content });
     res.status(200).json(item);
   } catch (err) {
     res.status(400).json({ err: err.message });
