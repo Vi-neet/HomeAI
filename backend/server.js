@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const itemRoutes = require("./routes/items");
-const cors = require('cors');
+const cors = require("cors");
 
 //express app
 const app = express();
@@ -25,8 +25,3 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
-
-// Remove this redundant app.listen call
-// app.listen(process.env.PORT, () => {
-//   console.log(`Listening on port ${process.env.PORT}`);
-// });
