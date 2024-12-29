@@ -142,7 +142,7 @@ ul.items-list > li {
   background-color: white;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 11; 
+  z-index: 11;
 }
 
 .modal-overlay {
@@ -153,4 +153,18 @@ ul.items-list > li {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10; /* Ensure the overlay is behind the modal */
+}
+.item-content {
+  /* display: inline-block; */
+  font-size: 50%;
+}
+.item-container {
+  display: grid;
+  border:1px solid red;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) ;
+  gap:15px;
+  justify-content: center;
+}
+.item-details {
+
 }

@@ -17,11 +17,15 @@ const Home = () => {
   }, []);
   return (
     <div className="home">
-      <div className="items">
-        {items &&
-          items.map((item) => (
-            <ItemCard key={item._id} item={item} />
-          ))}
+      <span>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam nemo
+        distinctio sed reprehenderit placeat, nobis omnis ullam non, labore
+        porro sit aliquid delectus libero assumenda, aspernatur vitae molestias
+        exercitationem animi.
+      </span>
+      <p><strong>Saved Responses</strong></p>
+      <div className="item-container">
+        {items && items.map((item) => <ItemCard key={item._id} item={item} />)}
       </div>
     </div>
   );
