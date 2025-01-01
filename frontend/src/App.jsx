@@ -3,8 +3,9 @@ import Chef from "./Pages/Chef";
 import Home from "./Pages/Home";
 import Trainer from "./Pages/Trainer";
 import Economist from "./Pages/Economist";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-
 
 const App = () => {
   return (
@@ -16,16 +17,18 @@ const App = () => {
           <Link to="/chef">Chef</Link>
           <Link to="/trainer">Trainer</Link>
           <Link to="/economist">Economist</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">signup</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/chef" element={<Chef />} />
           <Route path="/trainer" element={<Trainer />} />
           <Route path="/economist" element={<Economist />} />
         </Routes>
       </BrowserRouter>
-      {/* <Header/> */}
-      {/* <Form/> */}
     </div>
   );
 };
