@@ -5,9 +5,14 @@ import Trainer from "./Pages/Trainer";
 import Economist from "./Pages/Economist";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
+import { useLogout } from "./hooks/useLogout";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 const App = () => {
+  const {logout} = useLogout()
+  const handleClick = () => {
+    logout()
+  };
   return (
     <div>
       <BrowserRouter>
@@ -17,8 +22,14 @@ const App = () => {
           <Link to="/chef">Chef</Link>
           <Link to="/trainer">Trainer</Link>
           <Link to="/economist">Economist</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">signup</Link>
+          <div>
+            <button onClick={handleClick}>Logout</button>
+          </div>
+          <div>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">signup</Link>
+
+          </div>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
