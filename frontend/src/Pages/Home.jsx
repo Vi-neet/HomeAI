@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import ItemCard from "../components/ItemCard";
 const Home = () => {
   const [items, setItems] = useState(null);
+  const {user}=useAuthContext();
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch("http://localhost:4000/api/items");
+      const response = await fetch("http://localhost:4000/api/items",{
+        headers:{
+          'Authorization':`Bearer ${user.token}`
+        }
+      });
       const data = await response.json();
       if (response.ok) {
         setItems(data);
         console.log(data);
       }
     };
-    fetchItems();
-  }, []);
+    if(user){
+      fetchItems();
+    }
+  }, [user]);
   return (
     <div className="home">
       <span>

@@ -6,21 +6,41 @@ import Economist from "./Pages/Economist";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 // import { useLogout } from "./hooks/useLogout";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const App = () => {
+  const { user } = useAuthContext();
   return (
     <div>
       <BrowserRouter>
         <Header />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/chef" element={<Chef />} />
-          <Route path="/trainer" element={<Trainer />} />
-          <Route path="/economist" element={<Economist />} />
+          <Route
+            path="/"
+            element={user ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/chef"
+            element={user ? <Chef /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/trainer"
+            element={user ? <Trainer /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/economist"
+            element={user ? <Economist /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/signup"
+            element={!user ? <Signup /> : <Navigate to="/" />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
