@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
-
 import ItemCard from "../components/ItemCard";
+
 const Home = () => {
   const [items, setItems] = useState(null);
-  const {user}=useAuthContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch("http://localhost:4000/api/items",{
-        headers:{
-          'Authorization':`Bearer ${user.token}`
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`
         }
       });
       const data = await response.json();
@@ -19,10 +19,11 @@ const Home = () => {
         console.log(data);
       }
     };
-    if(user){
+    if(user) {
       fetchItems();
     }
   }, [user]);
+
   return (
     <div className="home">
       <span>

@@ -7,12 +7,11 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import Modal from "./Modal";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-
 const SolutionSection = ({ item, solutionTitle }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [defaultTitle, setDefaultTitle] = useState("");
-  const {user}=useAuthContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const renderedMarkdown = marked(item);
@@ -29,16 +28,15 @@ const SolutionSection = ({ item, solutionTitle }) => {
   };
 
   const handleSave = async (data) => {
-    if(!user){
-      console.log("User not logged in") 
-      return
+    if(!user) {
+      console.log("User not logged in");
+      return;
     }
-    const response = await fetch("http://localhost:4000/api/items", {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'Authorization':`Bearer ${user.token}`
-
+        'Authorization': `Bearer ${user.token}`
       },
       body: JSON.stringify(data),
     });
