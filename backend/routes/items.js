@@ -7,6 +7,9 @@ const {
   deleteItem,
   updateItem,
 } = require("../controllers/itemController");
+const requireAuth = require("../middleware/requireAuth");
+// Fires this function before for all routes
+router.use(requireAuth);
 
 //Get all items
 router.get("/", getAllItems);
