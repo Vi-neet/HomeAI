@@ -11,6 +11,10 @@ const itemSchema= new Schema({
       type:String,
       required:true
     },
+    user_Id: {
+      type: String,
+      required: true
+    }
 },{timestamps:true})
 
 module.exports=mongoose.model('Item',itemSchema)

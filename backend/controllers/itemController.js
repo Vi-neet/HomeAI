@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 
 // Get all items
 const getAllItems = async (req, res) => {
+  const user_Id = req.user._id;
   // Finding every Item and sorting them by createdAt in descending order (newest first)
-  const items = await Item.find({}).sort({ createdAt: -1 });
+  const items = await Item.find({user_Id}).sort({ createdAt: -1 });
   res.status(200).json(items);
 };
 // Get single item
@@ -22,10 +23,11 @@ const getSingleItem = async (req, res) => {
 };
 // Create new Item
 const createItem = async (req, res) => {
-  const { title, content } = req.body;
-  // Adding title and content
+  const { title, content } = req.body;  // Adding title and content
+  const user_Id = req.user._id;
+ 
   try {
-    const item = await Item.create({ title, content });
+    const item = await Item.create({ title, content, user_Id });
     res.status(200).json(item);
   } catch (err) {
     res.status(400).json({ err: err.message });
