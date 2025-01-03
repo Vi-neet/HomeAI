@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const itemRoutes = require("./routes/items");
 const userRoutes = require("./routes/user");
 const cors = require("cors");
+app.use(express.static('dist'))
 app.use(cors());
 //express app
 const app = express();
