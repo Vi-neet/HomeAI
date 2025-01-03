@@ -8,9 +8,9 @@ const cors = require("cors");
 //express app
 const app = express();
 //Middleware
-app.use(cors({
-    origin:`${process.env.FRONTEND_URL}`
-}));
+// app.use(cors({
+//     origin:`${process.env.FRONTEND_URL}`
+// }));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
@@ -23,8 +23,8 @@ app.use((req, res, next) => {
   next();
 });
 //Routes
-app.use("/api/items", itemRoutes);
-app.use("/api/user", userRoutes);
+app.use("api/items", itemRoutes);
+app.use("api/user", userRoutes);
 
 // Connect to DB
 mongoose
