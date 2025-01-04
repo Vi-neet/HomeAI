@@ -15,11 +15,11 @@ const Signup = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"
-          src="/homeAI-transparent.png"
+          src="/HomeAI-transparent.png"
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-          Sign Up
+          Create a new account
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
