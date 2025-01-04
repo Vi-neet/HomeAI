@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getWorkoutRoutineFromMistral } from "../Ais/TrainerAi";
-import SyncLoader from "react-spinners/SyncLoader";
+import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 
 const Trainer = () => {
   const [exercises, setExercises] = useState([
@@ -15,16 +15,7 @@ const Trainer = () => {
   const [workoutPlan, setWorkoutPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const viewWorkoutSection = useRef(null);
-  const override = {
-    display: "block",
-    margin: "2rem auto",
-    textAlign: "center",
-    position: "absolute",
-    top: "80%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: 10,
-  };
+
 
   useEffect(() => {
     if (workoutPlan !== "" && viewWorkoutSection.current !== null) {
@@ -69,13 +60,7 @@ const Trainer = () => {
         />
       )}
       {loading && (
-        <SyncLoader
-          color="#495057"
-          speedMultiplier={0.8}
-          size={20}
-          loading={loading}
-          cssOverride={override}
-        />
+        <LinearWithValueLabel />
       )}
       <div className={loading ? "blurred" : ""}>
         {workoutPlan && (

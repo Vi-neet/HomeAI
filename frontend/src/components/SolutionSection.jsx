@@ -63,7 +63,7 @@ const SolutionSection = ({ item, solutionTitle }) => {
           <FontAwesomeIcon icon={isSelected ? faHeartSolid : faHeartRegular} />
         </button>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: marked(item) }} />
+      <div className="prose lg:prose-l" dangerouslySetInnerHTML={{ __html: marked(item) }} />
       <Modal
         isOpen={isModalOpen}
         onClose={handleClose}

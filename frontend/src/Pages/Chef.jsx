@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getRecipeFromMistral } from "../Ais/ChefAi";
-import SyncLoader from "react-spinners/SyncLoader";
+// import SyncLoader from "react-spinners/SyncLoader";
 
 const Chef = () => {
   const [ingredients, setIngredients] = useState([
@@ -15,16 +16,6 @@ const Chef = () => {
   const [loading, setLoading] = useState(false);
 
   const viewRecipeSection = useRef(null);
-  const override = {
-    display: "block",
-    margin: "2rem auto",
-    textAlign: "center",
-    position: "absolute",
-    top: "80%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: 10,
-  };
 
   useEffect(() => {
     if (recipe !== "" && viewRecipeSection.current !== null) {
@@ -68,15 +59,8 @@ const Chef = () => {
           buttonText="Get a Recipe"
         />
       )}
-      {loading && (
-        <SyncLoader
-          color="#495057"
-          speedMultiplier={0.8}
-          size={20}
-          loading={loading}
-          cssOverride={override}
-        />
-      )}
+      {loading && <LinearWithValueLabel />}
+
       <div className={loading ? "blurred" : ""}>
         {recipe && (
           <SolutionSection item={recipe} solutionTitle="Chef Recommends:" />
