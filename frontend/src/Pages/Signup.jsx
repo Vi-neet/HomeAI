@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
-import logo from "../assets/homeAI-transparent.png";
+// import logo from "/src/assets/homeAI-transparent.png";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,11 @@ const Signup = () => {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img alt="Your Company" src={logo} className="mx-auto h-10 w-auto" />
+        <img
+          alt="Your Company"
+          src="/homeAI-transparent.png"
+          className="mx-auto h-10 w-auto"
+        />
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           Sign Up
         </h2>
