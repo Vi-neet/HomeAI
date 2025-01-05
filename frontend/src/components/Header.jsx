@@ -11,29 +11,35 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-[1] mx-auto  flex w-full max-w-7xl flex-wrap items-center justify-between border-b border-gray-100 bg-background p-[2em] font-sans font-bold uppercase text-text-primary backdrop-blur-[100px] dark:border-gray-800 dark:bg-d-background dark:text-d-text-primary">
-      <div>
+    <header className="header" >
+      <div className="logo-container">
         <img
           src="/HomeAI-transparent.png"
           alt="HomeAI Logo"
           className="logo h-16 w-16"
         />
-      </div>
-      <h1>HomeAI</h1>
+        <h1 className="title">HomeAI</h1>
+        </div>
 
       {user && (
-        <div className="w-1/3">
-          <div className="flex justify-between">
-            <Link to="/">Home</Link>
-            <Link to="/chef">Chef</Link>
-            <Link to="/trainer">Trainer</Link>
-            <Link to="/economist">Economist</Link>
+        <>
+          <nav className="nav-links">
+            <Link className="nav-links-el" to="/">Home</Link>
+
+            <Link className="nav-links-el" to="/chef">Chef</Link>
+
+            <Link className="nav-links-el" to="/trainer">Trainer</Link>
+
+            <Link className="nav-links-el" to="/economist">Economist</Link>
+          </nav>
+          <div className="logout-container">
+
+          <span className="loggedIN-email">{user.email}</span>
+          <button className="logout-btn" onClick={handleClick}>
+            Logout
+          </button>
           </div>
-          <div>
-            <span>{user.email}</span>
-            <button onClick={handleClick}>Logout</button>
-          </div>
-        </div>
+        </>
       )}
 
       {!user && (
