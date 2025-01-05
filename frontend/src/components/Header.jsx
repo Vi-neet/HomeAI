@@ -11,7 +11,27 @@ const Header = () => {
   };
 
   return (
-    <header className="header" >
+    <header className="header">
+      {user && (
+        <nav className="nav-links">
+          <Link className="nav-links-el" to="/">
+            Home
+          </Link>
+
+          <Link className="nav-links-el" to="/chef">
+            Chef
+          </Link>
+
+          <Link className="nav-links-el" to="/trainer">
+            Trainer
+          </Link>
+
+          <Link className="nav-links-el" to="/economist">
+            Economist
+          </Link>
+        </nav>
+      )}
+
       <div className="logo-container">
         <img
           src="/HomeAI-transparent.png"
@@ -19,27 +39,15 @@ const Header = () => {
           className="logo h-16 w-16"
         />
         <h1 className="title">HomeAI</h1>
-        </div>
+      </div>
 
       {user && (
-        <>
-          <nav className="nav-links">
-            <Link className="nav-links-el" to="/">Home</Link>
-
-            <Link className="nav-links-el" to="/chef">Chef</Link>
-
-            <Link className="nav-links-el" to="/trainer">Trainer</Link>
-
-            <Link className="nav-links-el" to="/economist">Economist</Link>
-          </nav>
-          <div className="logout-container">
-
+        <div className="logout-container">
           <span className="loggedIN-email">{user.email}</span>
           <button className="logout-btn" onClick={handleClick}>
             Logout
           </button>
-          </div>
-        </>
+        </div>
       )}
 
       {!user && (
