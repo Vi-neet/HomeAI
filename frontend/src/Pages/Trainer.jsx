@@ -3,6 +3,8 @@ import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getWorkoutRoutineFromMistral } from "../Ais/TrainerAi";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
+import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
 
 const Trainer = () => {
   const [exercises, setExercises] = useState([
@@ -15,7 +17,6 @@ const Trainer = () => {
   const [workoutPlan, setWorkoutPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const viewWorkoutSection = useRef(null);
-
 
   useEffect(() => {
     if (workoutPlan !== "" && viewWorkoutSection.current !== null) {
@@ -57,11 +58,10 @@ const Trainer = () => {
           buttonText="Get a Workout Plan"
           toggle={getWorkoutPlan}
           ref={viewWorkoutSection}
+          emoji={<FontAwesomeIcon icon={faDumbbell} />}
         />
       )}
-      {loading && (
-        <LinearWithValueLabel />
-      )}
+      {loading && <LinearWithValueLabel />}
       <div className={loading ? "blurred" : ""}>
         {workoutPlan && (
           <SolutionSection

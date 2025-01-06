@@ -108,12 +108,23 @@ main {
   margin-right: 5px;
 }
 ul.items-list {
-  margin-bottom: 48px;
+  margin: 10px 0 0 40px;
+}
+.item-title {
+  margin: 30px 0 0 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 ul.items-list > li {
   color: #475467;
   line-height: 28px;
+  list-style: disc;
+}
+.title-container{
+  display: flex;
+  gap:10px;
+  align-items: center;
 }
 
 .get-solution-container {
@@ -122,7 +133,8 @@ ul.items-list > li {
   align-items: center;
   border-radius: 8px;
   background: #f0efeb;
-  padding: 10px 28px;
+  padding: 30px 28px;
+  margin: 20px 0;
 }
 
 .get-solution-container h3 {
@@ -134,7 +146,7 @@ ul.items-list > li {
 .get-solution-container p {
   color: #6b7280;
   font-size: 0.875rem;
-  line-height: 20px;
+  line-height: 1.5;
 }
 
 .get-solution-container button {
@@ -170,6 +182,11 @@ ul.items-list > li {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.solution-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .heart-button {

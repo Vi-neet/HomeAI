@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
 const ItemsList = (props) => {
-  const listItems = props.items.map((item) => (
-    <li key={item}>{item}</li>
-  ));
+  const listItems = props.items.map((item) => <li key={item}>{item}</li>);
 
   return (
     <section>
-      <h2>{props.title}</h2>
+      <h2 className="item-title">{props.title}</h2>
       <ul className="items-list" aria-live="polite">
-        {listItems}
+        <li>{listItems}</li>
       </ul>
       {props.items.length > 3 && (
         <div className="get-solution-container">
           <div ref={props.ref}>
-            <h3>{props.readyTitle}</h3>
+            <div className="title-container">
+              <span className="emoji">{props.emoji}</span>
+              <h3>{props.readyTitle}</h3>
+            </div>
             <p>{props.readyDescription}</p>
           </div>
           <button onClick={props.toggle}>{props.buttonText}</button>

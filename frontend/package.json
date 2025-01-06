@@ -23,6 +23,7 @@
     "@mui/material": "^6.3.0",
     "@nextui-org/navbar": "^2.2.7",
     "@nextui-org/react": "^2.6.10",
+    "boxicons": "^2.1.4",
     "dompurify": "^3.2.3",
     "dotenv": "^16.4.5",
     "marked": "^15.0.4",

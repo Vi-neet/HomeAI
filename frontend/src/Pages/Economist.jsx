@@ -3,7 +3,8 @@ import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getBudgetFromMistral } from "../Ais/EconomistAI";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
+import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
 const Economist = () => {
   const [prices, setPrices] = useState([
     "Rent: 1000",
@@ -56,6 +57,7 @@ const Economist = () => {
           readyTitle="Ready for a Budget?"
           readyDescription="Generate a recipe for your list of prices."
           buttonText="Get a Budget"
+          emoji={<FontAwesomeIcon icon={faMoneyBill1Wave} />}
         />
       )}
       {loading && (

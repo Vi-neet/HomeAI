@@ -3,8 +3,8 @@ import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getRecipeFromMistral } from "../Ais/ChefAi";
-// import SyncLoader from "react-spinners/SyncLoader";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'// import SyncLoader from "react-spinners/SyncLoader";
+import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 const Chef = () => {
   const [ingredients, setIngredients] = useState([
     "Pizza Dough",
@@ -57,6 +57,7 @@ const Chef = () => {
           readyTitle="Ready for a Recipe?"
           readyDescription="Generate a recipe for your list of ingredients."
           buttonText="Get a Recipe"
+          emoji={<FontAwesomeIcon icon={faPizzaSlice} />}
         />
       )}
       {loading && <LinearWithValueLabel />}
