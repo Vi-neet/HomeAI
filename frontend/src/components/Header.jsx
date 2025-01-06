@@ -104,13 +104,13 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-          <div className="flex flex-col gap-4 pt-4 border-t">
+          <div className="flex items-center gap-2 pt-4 border-t">
             <span className="text-gray-600">{user.email}</span>
             <button
               onClick={handleClick}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              className=" text-red-500 hover:text-red-600"
             >
-              Logout
+              <LogOut />
             </button>
           </div>
         </div>
