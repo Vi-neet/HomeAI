@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { Save, Trash2 } from "lucide-react";
 const Modal = ({ isOpen, onClose, onSave, defaultTitle, defaultContent }) => {
   const [title, setTitle] = useState(defaultTitle);
   const [content, setContent] = useState(defaultContent);
@@ -21,21 +22,35 @@ const Modal = ({ isOpen, onClose, onSave, defaultTitle, defaultContent }) => {
     <>
       <div className="modal-overlay" onClick={onClose}></div>
       <div className="modal">
-        <h2>Add Item</h2>
+        <h2 className="modal--add-item">Add Item</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Title"
+            className="modal-input"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
             placeholder="Content"
+            className="modal-textarea"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <button type="submit">Save</button>
-          <button type="button" onClick={onClose}>Close</button>
+          <div className="modal--btn-container">
+            <button className="modal-submit--btn" type="submit">
+              <Save />
+              Save
+            </button>
+            <button
+              className="modal-close--btn"
+              type="button"
+              onClick={onClose}
+            >
+              <Trash2 />
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </>

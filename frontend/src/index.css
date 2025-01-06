@@ -121,9 +121,9 @@ ul.items-list > li {
   line-height: 28px;
   list-style: disc;
 }
-.title-container{
+.title-container {
   display: flex;
-  gap:10px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -205,6 +205,8 @@ ul.items-list > li {
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   z-index: 11;
+  border-radius: 6px;
+  border: 1px solid #d1d5d8;
 }
 
 .modal-overlay {
@@ -215,6 +217,57 @@ ul.items-list > li {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
+}
+.modal--add-item {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.modal-input {
+  flex-grow: 1;
+  border-radius: 6px;
+  border: 1px solid #d1d5d8;
+  padding: 9px 13px;
+  width: 100%;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+.modal-textarea {
+  padding: 20px;
+  width: 100%;
+  height: 10rem;
+  margin: 1rem auto;
+  flex-grow: 1;
+  border-radius: 6px;
+  border: 1px solid #d1d5d8;
+
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+.modal--btn-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.modal-submit--btn,
+.modal-close--btn {
+  border: none;
+  border-radius: 6px;
+  /* background: #d17557; */
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  color: #fafaf8;
+  padding: 6px 15px;
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.modal-submit--btn {
+  background-color: #40c057;
+}
+.modal-close--btn {
+  background-color: #fa5252;
+  display: flex;
 }
 .item-content {
   /* display: inline-block; */

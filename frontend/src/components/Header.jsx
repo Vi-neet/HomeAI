@@ -55,7 +55,7 @@ const Header = () => {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="text-gray-600 hover:text-gray-900 font-medium"
+                    className="text-gray-600 hover:text-gray-900 hover:underline font-medium"
                   >
                     {link.text}
                   </Link>
