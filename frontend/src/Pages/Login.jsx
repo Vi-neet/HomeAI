@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { Link } from "react-router-dom";
 // import logo from "/src/assets/homeAI-transparent.png";
 
 const Login = () => {
@@ -71,6 +72,14 @@ const Login = () => {
           </button>
           {error && <div className="error">{error}</div>}
         </form>
+        <p className="mt-10 text-center text-sm/6 text-gray-500">
+          Don&#39;t have an account?{" "}
+          <Link to="/signup"
+            className="font-semibold text-indigo-600 hover:text-indigo-500"
+          >
+            Signup
+          </Link>
+        </p>
       </div>
     </div>
   );

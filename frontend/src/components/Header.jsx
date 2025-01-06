@@ -50,12 +50,12 @@ const Header = () => {
         </div>
       )}
 
-      {!user && (
+      {/* {!user && (
         <div>
           <Link to="/login">Login</Link>
           <Link to="/signup">signup</Link>
         </div>
-      )}
+      )} */}
     </header>
   );
 };

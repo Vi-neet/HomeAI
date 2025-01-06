@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
+import { Link } from "react-router-dom";
 // import logo from "/src/assets/homeAI-transparent.png";
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -69,6 +70,15 @@ const Signup = () => {
             {error && <div className="error">{error}</div>}
           </div>
         </form>
+        <p className="mt-10 text-center text-sm/6 text-gray-500">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="font-semibold text-indigo-600 hover:text-indigo-500"
+          >
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
