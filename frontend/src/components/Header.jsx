@@ -1,7 +1,7 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Header = () => {
@@ -65,13 +65,13 @@ const Header = () => {
 
             {/* Desktop Logout */}
             {!isMobile && (
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center gap-2">
                 <span className="text-gray-600">{user.email}</span>
                 <button
                   onClick={handleClick}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  className=" text-red-500 hover:text-red-600"
                 >
-                  Logout
+                  <LogOut size={20} />
                 </button>
               </div>
             )}
