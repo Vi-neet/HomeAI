@@ -7,17 +7,15 @@ import { formatDistance } from "date-fns";
 
 const ItemCard = ({ item }) => {
   const [isDeleted, setIsDeleted] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false); // Add modal state here
+  const [modalOpen, setModalOpen] = useState(false);
   const renderedMarkdown = marked(item.content.substring(0, 200));
   const { user } = useAuthContext();
-  const timeAgo = formatDistance(
-    new Date(item.createdAt),
-    new Date(),
-    { addSuffix: true }
-  );
+  const timeAgo = formatDistance(new Date(item.createdAt), new Date(), {
+    addSuffix: true,
+  });
 
   const handleDelete = async (e) => {
-    e.stopPropagation(); // Prevent modal from opening when clicking delete
+    e.stopPropagation();
     if (!user) {
       console.log("You must be logged in to delete an item");
       return;
@@ -52,25 +50,32 @@ const ItemCard = ({ item }) => {
 
   return (
     <>
-      <div 
-        className="item-details" 
+      <div
+        className="item-details flex flex-col min-h-[200px] p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
         onClick={() => setModalOpen(true)}
-        style={{ cursor: 'pointer' }} // Add cursor pointer to show it's clickable
+        style={{ cursor: "pointer" }}
       >
-        <h4>{item.title}</h4>
+        <h4 className="text-lg font-semibold text-slate-800">{item.title}</h4>
         <div
-          className="item-content"
+          className="item-content flex-grow mt-2 mb-4"
           dangerouslySetInnerHTML={{
             __html: renderedMarkdown,
           }}
         />
-        <p>{timeAgo}</p>
-        <button onClick={handleDelete}>Delete</button>
+        <div className="flex justify-between items-center mt-auto pt-3 border-t">
+          <button 
+            onClick={handleDelete}
+            className="px-3 py-1 text-sm text-red-600 hover:text-red-700 border border-red-600 rounded hover:bg-red-50 transition-colors"
+          >
+            Delete
+          </button>
+          <p className="text-sm text-gray-600">{timeAgo}</p>
+        </div>
       </div>
-      <ItemCardModal 
-        item={item} 
-        open={modalOpen} 
-        onClose={() => setModalOpen(false)} 
+      <ItemCardModal
+        item={item}
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
       />
     </>
   );

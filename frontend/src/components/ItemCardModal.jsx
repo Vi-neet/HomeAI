@@ -18,7 +18,7 @@ const style = {
 
 export default function ItemCardModal({ item, open, onClose }) {
   const renderedMarkdown = marked(item.content);
-  
+
   return (
     <Modal
       open={open}
