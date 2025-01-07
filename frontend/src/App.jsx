@@ -12,7 +12,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 const App = () => {
   const { user } = useAuthContext();
   return (
-    <div>
+    <div className="mx-auto max-w-[2560px]">
       <BrowserRouter>
         <Header />
 

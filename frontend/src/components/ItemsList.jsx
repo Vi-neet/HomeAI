@@ -12,7 +12,9 @@ const ItemsList = (props) => {
         <div className="get-solution-container">
           <div ref={props.ref}>
             <div className="title-container">
-              <span className="emoji">{props.emoji}</span>
+              <span className="emoji hover:animate-bounce hover:cursor-pointer">
+                {props.emoji}
+              </span>
               <h3>{props.readyTitle}</h3>
             </div>
             <p>{props.readyDescription}</p>

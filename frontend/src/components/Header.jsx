@@ -35,7 +35,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white px-4 py-2">
+    <header className="header px-4 py-2">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div>
           <img
@@ -55,7 +55,7 @@ const Header = () => {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="text-gray-600 hover:text-gray-900 hover:underline font-medium"
+                    className="text-gray-600 ml-10 hover:text-gray-900 hover:underline font-medium"
                   >
                     {link.text}
                   </Link>

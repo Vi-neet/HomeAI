@@ -6,16 +6,10 @@ import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
 import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
 const Economist = () => {
-  const [prices, setPrices] = useState([
-    "Rent: 1000",
-    "Groceries: 200",
-    "Utilities: 100",
-    "Income:20000",
-  ]);
+  const [prices, setPrices] = useState([]);
   const [budget, setBudget] = useState("");
   const [loading, setLoading] = useState(false);
   const viewBudgetSection = useRef(null);
-
 
   useEffect(() => {
     if (budget !== "" && viewBudgetSection.current !== null) {
@@ -60,9 +54,7 @@ const Economist = () => {
           emoji={<FontAwesomeIcon icon={faMoneyBill1Wave} />}
         />
       )}
-      {loading && (
-        <LinearWithValueLabel/>
-      )}
+      {loading && <LinearWithValueLabel />}
       <div className={loading ? "blurred" : ""}>
         {budget && (
           <SolutionSection

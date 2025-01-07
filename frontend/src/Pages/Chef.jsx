@@ -3,15 +3,10 @@ import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import ItemsList from "../components/ItemsList";
 import SolutionSection from "../components/SolutionSection";
 import { getRecipeFromMistral } from "../Ais/ChefAi";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'// import SyncLoader from "react-spinners/SyncLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
 import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 const Chef = () => {
-  const [ingredients, setIngredients] = useState([
-    "Pizza Dough",
-    "Tomato Sauce",
-    "Mozzarella Cheese",
-    "Basic ingredients",
-  ]);
+  const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
   const [loading, setLoading] = useState(false);
 

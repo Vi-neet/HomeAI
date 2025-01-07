@@ -7,13 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import Sync
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
 
 const Trainer = () => {
-  const [exercises, setExercises] = useState([
-    "bench",
-    "barbell",
-    "squat rack",
-    "plates upto 200kg",
-    "4 day routine",
-  ]);
+  const [exercises, setExercises] = useState([]);
   const [workoutPlan, setWorkoutPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const viewWorkoutSection = useRef(null);
