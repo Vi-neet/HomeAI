@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { marked } from "marked";
-/* eslint-disable react/prop-types */
 
 const style = {
   position: "absolute",
@@ -14,28 +14,51 @@ const style = {
     sm: "80%",
     md: "60%",
     lg: "50%",
+    xl: "40%",
+    "2xl": "60%", // Wider modal for 4K
   },
-  maxWidth: "800px",
-  maxHeight: "90vh",
+  maxWidth: {
+    xs: "800px",
+    "2xl": "2400px", // Much larger max-width for 4K
+  },
+  maxHeight: {
+    xs: "90vh",
+    "2xl": "85vh",
+  },
   overflow: "auto",
   bgcolor: "#fafaf8",
-  borderRadius: "8px",
+  borderRadius: {
+    xs: "8px",
+    "2xl": "16px", // Larger border radius for 4K
+  },
   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-  p: { xs: 2, sm: 4 },
+  p: {
+    xs: 2,
+    sm: 4,
+    "2xl": 8, // Increased padding for 4K
+  },
   "&:focus": {
     outline: "none",
   },
-  // Custom scrollbar styling
   "&::-webkit-scrollbar": {
-    width: "8px",
+    width: {
+      xs: "8px",
+      "2xl": "16px", // Larger scrollbar for 4K
+    }
   },
   "&::-webkit-scrollbar-track": {
     background: "#f1f1f1",
-    borderRadius: "4px",
+    borderRadius: {
+      xs: "4px",
+      "2xl": "8px",
+    }
   },
   "&::-webkit-scrollbar-thumb": {
     background: "#888",
-    borderRadius: "4px",
+    borderRadius: {
+      xs: "4px",
+      "2xl": "8px",
+    },
     "&:hover": {
       background: "#666",
     },
@@ -44,7 +67,6 @@ const style = {
 
 export default function ItemCardModal({ item, open, onClose }) {
   const renderedMarkdown = marked(item.content);
-
   return (
     <Modal
       open={open}
@@ -62,12 +84,22 @@ export default function ItemCardModal({ item, open, onClose }) {
           variant="h6"
           component="h2"
           sx={{
-            fontSize: { xs: "1.25rem", sm: "1.5rem" },
+            fontSize: {
+              xs: "1.5rem",
+              sm: "2rem",
+              "2xl": "4rem", // Much larger title for 4K
+            },
             fontWeight: 600,
             color: "#1f2937",
-            mb: 2,
+            mb: {
+              xs: 2,
+              "2xl": 6,
+            },
             borderBottom: "1px solid #e5e7eb",
-            pb: 2,
+            pb: {
+              xs: 2,
+              "2xl": 4,
+            },
           }}
         >
           {item.title}
@@ -77,36 +109,83 @@ export default function ItemCardModal({ item, open, onClose }) {
           component="div"
           sx={{
             color: "#4b5563",
-            fontSize: { xs: "0.875rem", sm: "1rem" },
-            lineHeight: 1.7,
+            fontSize: {
+              xs: "1rem",
+              sm: "1.5rem",
+              "2xl": "2.5rem", // Much larger base font for 4K
+            },
+            lineHeight: {
+              xs: 1.7,
+              "2xl": 1.8,
+            },
             "& p": {
-              mb: 2,
+              mb: {
+                xs: 2,
+                "2xl": 4,
+              },
             },
             "& h1, & h2, & h3, & h4, & h5, & h6": {
               color: "#1f2937",
               fontWeight: 600,
-              mt: 3,
-              mb: 2,
+              mt: {
+                xs: 3,
+                "2xl": 6,
+              },
+              mb: {
+                xs: 2,
+                "2xl": 4,
+              },
+              fontSize: {
+                xs: "inherit",
+                "2xl": "calc(100% + 1rem)", // Larger heading scale for 4K
+              },
             },
             "& ul, & ol": {
-              pl: 3,
-              mb: 2,
+              pl: {
+                xs: 3,
+                "2xl": 6,
+              },
+              mb: {
+                xs: 2,
+                "2xl": 4,
+              },
             },
             "& li": {
-              mb: 1,
+              mb: {
+                xs: 1,
+                "2xl": 2,
+              },
             },
             "& code": {
               backgroundColor: "#f3f4f6",
-              padding: "2px 4px",
-              borderRadius: "4px",
-              fontSize: "0.875em",
+              padding: {
+                xs: "2px 4px",
+                "2xl": "8px 16px", // Larger code padding for 4K
+              },
+              borderRadius: {
+                xs: "4px",
+                "2xl": "8px",
+              },
+              fontSize: {
+                xs: "0.875em",
+                "2xl": "0.9em",
+              },
             },
             "& pre": {
               backgroundColor: "#f3f4f6",
-              padding: 2,
-              borderRadius: "4px",
+              padding: {
+                xs: 2,
+                "2xl": 6,
+              },
+              borderRadius: {
+                xs: "4px",
+                "2xl": "8px",
+              },
               overflow: "auto",
-              mb: 2,
+              mb: {
+                xs: 2,
+                "2xl": 4,
+              },
             },
           }}
         >
