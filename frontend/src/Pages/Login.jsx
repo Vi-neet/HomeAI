@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLogin } from "../hooks/useLogin";
 import { Link } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 // import logo from "/src/assets/homeAI-transparent.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [advice, setAdvice] = useState("");
   const { login, error, isLoading } = useLogin();
+
+  useEffect(() => {
+    const fetchAdvice = async () => {
+      const response = await fetch("https://api.adviceslip.com/advice");
+      const data = await response.json();
+      setAdvice(data.slip.advice);
+    };
+    fetchAdvice();
+  }, [isLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +28,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 relative">
+      {isLoading && (
+        <div className="absolute inset-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-10">
+          <CircularProgress />
+          <p className="mt-4 text-center text-gray-700">{advice}</p>
+        </div>
+      )}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"

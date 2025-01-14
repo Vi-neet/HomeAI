@@ -1,18 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSignup } from "../hooks/useSignup";
 import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+
 // import logo from "/src/assets/homeAI-transparent.png";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [advice, setAdvice] = useState("");
   const { signup, error, isLoading } = useSignup();
+
+  useEffect(() => {
+    const fetchAdvice = async () => {
+      const response = await fetch("https://api.adviceslip.com/advice");
+      const data = await response.json();
+      setAdvice(data.slip.advice);
+    };
+    fetchAdvice();
+  }, [isLoading]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(email, password);
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 relative">
+      {isLoading && (
+        <div className="absolute inset-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-10">
+          <CircularProgress />
+          <p className="mt-4 text-center text-gray-700">{advice}</p>
+        </div>
+      )}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"
@@ -42,7 +61,6 @@ const Signup = () => {
               />
             </div>
           </div>
-
           <div>
             <label className="block text-sm/6 font-medium text-gray-900">
               Password:
@@ -60,32 +78,31 @@ const Signup = () => {
               />
             </div>
           </div>
-          
-            <button
-              disabled={isLoading}
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-              Sign up
-            </button>
-            {error && (
-              <div className="p-4 mb-4 text-sm font-medium text-red-800 bg-red-100 rounded-lg border border-red-200 dark:bg-red-900/10 dark:text-red-400 dark:border-red-800/20">
-                <div className="flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 mr-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {error}
-                </div>
+          <button
+            disabled={isLoading}
+            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Sign up
+          </button>
+          {error && (
+            <div className="p-4 mb-4 text-sm font-medium text-red-800 bg-red-100 rounded-lg border border-red-200 dark:bg-red-900/10 dark:text-red-400 dark:border-red-800/20">
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {error}
               </div>
-            )}{" "}
+            </div>
+          )}{" "}
         </form>
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Already have an account?{" "}
