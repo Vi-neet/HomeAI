@@ -24,9 +24,12 @@ const SolutionSection = ({ item, solutionTitle }) => {
 
   const toggleSelection = () => {
     setIsSelected(!isSelected);
+    if (!isSelected) {
+      // Save only if selecting
+      handleSave({ title: defaultTitle, content: item });
+    }
     setIsModalOpen(true);
   };
-
   const handleSave = async (data) => {
     if(!user) {
       console.log("User not logged in");
@@ -42,6 +45,12 @@ const SolutionSection = ({ item, solutionTitle }) => {
     });
     if (response.ok) {
       console.log("Item saved");
+      const savedItems = JSON.parse(localStorage.getItem("savedResponses")) || [];
+      const updatedItems = [data,...savedItems];
+      localStorage.setItem("savedResponses", JSON.stringify(updatedItems));
+  
+      console.log("Item saved in local storage");
+    
     }
   };
 

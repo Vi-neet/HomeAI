@@ -9,24 +9,30 @@ const Home = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/items`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const data = await response.json();
       if (response.ok) {
-        setItems(data);
-        console.log(data);
+        // Merge local storage and database items
+        const localItems = JSON.parse(localStorage.getItem("savedResponses")) || [];
+        const mergedItems = [...new Map([...localItems, ...data].map((item) => [item.title, item])).values()];
+  
+        const sortedItems = mergedItems.reverse(); // Sort so the most recent items appear first
+        setItems(sortedItems);
+        localStorage.setItem("savedResponses", JSON.stringify(sortedItems));
+  
+        console.log("Fetched items:", sortedItems);
       }
     };
+  
     if (user) {
       fetchItems();
     }
   }, [user]);
+  
 
   return (
     <div className="home">
