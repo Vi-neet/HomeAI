@@ -19,12 +19,11 @@ const Home = () => {
         // Merge local storage and database items
         const localItems = JSON.parse(localStorage.getItem("savedResponses")) || [];
         const mergedItems = [...new Map([...localItems, ...data].map((item) => [item.title, item])).values()];
+        
+        setItems(mergedItems);
+        localStorage.setItem("savedResponses", JSON.stringify(mergedItems));
   
-        const sortedItems = mergedItems.reverse(); // Sort so the most recent items appear first
-        setItems(sortedItems);
-        localStorage.setItem("savedResponses", JSON.stringify(sortedItems));
-  
-        console.log("Fetched items:", sortedItems);
+        console.log("Fetched items:", mergedItems);
       }
     };
   
