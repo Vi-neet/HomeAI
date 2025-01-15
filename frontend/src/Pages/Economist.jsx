@@ -5,6 +5,8 @@ import { getBudgetFromMistral } from "../Ais/EconomistAI";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
 import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
+import Instruction from "../components/Instruction";
+
 const Economist = () => {
   const [prices, setPrices] = useState([]);
   const [budget, setBudget] = useState("");
@@ -42,7 +44,7 @@ const Economist = () => {
         />
         <button className="input-btn">Add Price</button>
       </form>
-      {prices.length > 0 && (
+      {prices.length > 0 ? (
         <ItemsList
           items={prices}
           toggle={getBudget}
@@ -53,7 +55,7 @@ const Economist = () => {
           buttonText="Get a Budget"
           emoji={<FontAwesomeIcon icon={faMoneyBill1Wave} />}
         />
-      )}
+      ):<Instruction/>}
       {loading && <LinearWithValueLabel />}
       <div className={loading ? "blurred" : ""}>
         {budget && (

@@ -5,7 +5,7 @@ import { getWorkoutRoutineFromMistral } from "../Ais/TrainerAi";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
-
+import Instruction from "../components/Instruction";
 const Trainer = () => {
   const [exercises, setExercises] = useState([]);
   const [workoutPlan, setWorkoutPlan] = useState("");
@@ -43,7 +43,7 @@ const Trainer = () => {
         />
         <button className="input-btn">Add Exercise</button>
       </form>
-      {exercises.length > 0 && (
+      {exercises.length > 0 ? (
         <ItemsList
           items={exercises}
           title="Exercises on Hand:"
@@ -54,7 +54,7 @@ const Trainer = () => {
           ref={viewWorkoutSection}
           emoji={<FontAwesomeIcon icon={faDumbbell} />}
         />
-      )}
+      ):<Instruction/>}
       {loading && <LinearWithValueLabel />}
       <div className={loading ? "blurred" : ""}>
         {workoutPlan && (

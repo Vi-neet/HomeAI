@@ -5,6 +5,7 @@ import SolutionSection from "../components/SolutionSection";
 import { getRecipeFromMistral } from "../Ais/ChefAi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // import SyncLoader from "react-spinners/SyncLoader";
 import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
+import Instruction from "../components/Instruction";
 const Chef = () => {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
@@ -43,7 +44,8 @@ const Chef = () => {
         />
         <button className="input-btn">Add Ingredient</button>
       </form>
-      {ingredients.length > 0 && (
+
+      {ingredients.length > 0 ? (
         <ItemsList
           items={ingredients}
           toggle={getRecipe}
@@ -54,7 +56,7 @@ const Chef = () => {
           buttonText="Get a Recipe"
           emoji={<FontAwesomeIcon icon={faPizzaSlice} />}
         />
-      )}
+      ):<Instruction/>}
       {loading && <LinearWithValueLabel />}
 
       <div className={loading ? "blurred" : ""}>
