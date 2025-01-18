@@ -3,6 +3,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import ItemCard from "../components/ItemCard";
 import Hero from "../components/Hero";
 import { BookMarked } from "lucide-react";
+
 const Home = () => {
   const [items, setItems] = useState(null);
   const { user } = useAuthContext();
@@ -16,14 +17,10 @@ const Home = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        // Merge local storage and database items
-        const localItems = JSON.parse(localStorage.getItem("savedResponses")) || [];
-        const mergedItems = [...new Map([...localItems, ...data].map((item) => [item.title, item])).values()];
-        
-        setItems(mergedItems);
-        localStorage.setItem("savedResponses", JSON.stringify(mergedItems));
-  
-        console.log("Fetched items:", mergedItems);
+        // Sort items in ascending order from most recent to oldest
+        const sortedItems = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setItems(sortedItems);
+        console.log("Fetched items:", sortedItems);
       }
     };
   
@@ -31,7 +28,6 @@ const Home = () => {
       fetchItems();
     }
   }, [user]);
-  
 
   return (
     <div className="home">

@@ -23,39 +23,47 @@ const SolutionSection = ({ item, solutionTitle }) => {
   }, [item]);
 
   const toggleSelection = () => {
-    setIsSelected(!isSelected);
-    if (!isSelected) {
-      // Save only if selecting
-      handleSave({ title: defaultTitle, content: item });
-    }
+    // Only open the modal, don't save here
     setIsModalOpen(true);
   };
+
   const handleSave = async (data) => {
-    if(!user) {
+    if (!user) {
       console.log("User not logged in");
       return;
     }
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${user.token}`
-      },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      console.log("Item saved");
-      const savedItems = JSON.parse(localStorage.getItem("savedResponses")) || [];
-      const updatedItems = [data,...savedItems];
-      localStorage.setItem("savedResponses", JSON.stringify(updatedItems));
-  
-      console.log("Item saved in local storage");
-    
+
+    // Prevent duplicate saves
+    if (isSelected) {
+      console.log("Item already saved");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        console.log("Item saved successfully");
+        setIsSelected(true); // Update selection state after successful save
+        setIsModalOpen(false); // Close modal after successful save
+      } else {
+        console.error("Failed to save item");
+        // Optionally handle error state here
+      }
+    } catch (error) {
+      console.error("Error saving item:", error);
+      // Optionally handle error state here
     }
   };
 
   const handleClose = () => {
-    setIsSelected(false);
     setIsModalOpen(false);
   };
 
@@ -65,14 +73,17 @@ const SolutionSection = ({ item, solutionTitle }) => {
         <h2>{solutionTitle}</h2>
         <button
           className="heart-button"
-          aria-label="Like"
+          aria-label={isSelected ? "Unlike" : "Like"}
           onClick={toggleSelection}
           style={{ color: isSelected ? "#c92a2a" : "#000" }}
         >
           <FontAwesomeIcon icon={isSelected ? faHeartSolid : faHeartRegular} />
         </button>
       </div>
-      <div className="prose lg:prose-l" dangerouslySetInnerHTML={{ __html: marked(item) }} />
+      <div 
+        className="prose lg:prose-l" 
+        dangerouslySetInnerHTML={{ __html: marked(item) }} 
+      />
       <Modal
         isOpen={isModalOpen}
         onClose={handleClose}

@@ -21,7 +21,6 @@ const ItemCard = ({ item }) => {
       return;
     }
     try {
-      // Delete from the database
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/items/${item._id}`,
         {
@@ -34,17 +33,6 @@ const ItemCard = ({ item }) => {
       if (response.ok) {
         console.log(`Item with id: ${item._id} deleted successfully`);
         setIsDeleted(true);
-
-        // Delete from local storage
-        const savedItems =
-          JSON.parse(localStorage.getItem("savedResponses")) || [];
-        const updatedItems = savedItems.filter(
-          (savedItem) => savedItem._id !== item._id
-        );
-        localStorage.setItem("savedResponses", JSON.stringify(updatedItems));
-        console.log(`Item with id: ${item._id} deleted from local storage`);
-
-        // Notify parent component (if applicable)
         if (typeof item.onDelete === "function") {
           item.onDelete(item._id);
         }
@@ -75,7 +63,7 @@ const ItemCard = ({ item }) => {
           }}
         />
         <div className="flex justify-between items-center mt-auto pt-3 border-t">
-          <button
+          <button 
             onClick={handleDelete}
             className="px-3 py-1 text-sm text-red-600 hover:text-red-700 border border-red-600 rounded hover:bg-red-50 transition-colors"
           >
