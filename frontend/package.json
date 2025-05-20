@@ -24,6 +24,7 @@
     "@nextui-org/navbar": "^2.2.7",
     "@nextui-org/react": "^2.6.10",
     "boxicons": "^2.1.4",
+    "cohere-ai": "^7.17.1",
     "date-fns": "^4.1.0",
     "dompurify": "^3.2.3",
     "doodle.css": "^0.0.2",
